@@ -15,20 +15,6 @@ This project is a basic calculator built with React and Vite. The state manageme
 - **Vite**: For a modern and fast development environment.
 - **useReducer**: For predictable state management of the calculator.
 
-## Project Structure
-
-```
-calculadora-usereducer/
-├── src/
-│   ├── App.jsx       # Main entry point of the project.
-│   ├── Calculator.jsx # Main calculator component.
-│   ├── App.css       # Styles for the calculator.
-│   └── main.jsx      # Main configuration for React and Vite.
-├── public/           # Public files.
-├── package.json      # Project dependencies and scripts.
-└── README.md         # Project documentation.
-```
-
 ## Next Steps
 
 - Add support for keyboard input.
