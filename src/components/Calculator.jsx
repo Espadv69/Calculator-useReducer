@@ -102,7 +102,17 @@ export const Calculator = () => {
   return (
     <div className="calculator">
       <div className="display">{state.currentValue}</div>
-      <div className="buttons">{}</div>
+      <div className="buttons">
+        {buttons.map(({ label, type, payload, span }, index) => (
+          <button
+            key={index}
+            onClick={() => handleAction(type, payload)}
+            className={span ? `span-${span}` : ''}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
