@@ -23,3 +23,16 @@ const reducer = (state, action) => {
       return { ...state, currentValue: state.currentValue + payload }
   }
 }
+
+export const Calculator = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+    <div className="calculator">
+      <div className="display">{state.currentValue}</div>
+      <div className="buttons">
+      { /* map buttons */}
+      </div>
+    </div>
+  )
+}
