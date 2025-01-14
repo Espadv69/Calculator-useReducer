@@ -22,6 +22,25 @@ const reducer = (state, action) => {
       // If the current value already has a dot and the payload is a dot, return the state as is
       return { ...state, currentValue: state.currentValue + payload }
 
+    case 'CALCULATE':
+      if (!state.operation || state.previousValue === null) return state
+
+      const prev = parseFloat(state.previousValue)
+      const current = parseFloat(state.currentValue)
+
+      const operations = {
+        '+': prev + current,
+        '-': prev - current,
+        '*': prev * current,
+        '/': prev / current,
+      }
+
+      return {
+        currentValue: operations[state.operation]?.toString() || '0',
+        previousValue: null,
+        operation: null,
+      }
+
     case 'CLEAR':
       return initialState
 
