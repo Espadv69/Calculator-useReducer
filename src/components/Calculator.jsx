@@ -22,6 +22,17 @@ const reducer = (state, action) => {
       // If the current value already has a dot and the payload is a dot, return the state as is
       return { ...state, currentValue: state.currentValue + payload }
 
+    case 'CHOOSE_OPERATION':
+      // If the current value is 0, return the state as is
+      if (state.currentValue === '0') return state
+
+      // If there is already an operation, calculate the result before setting the new operation
+      return {
+        previousValue: state.currentValue,
+        operation: payload,
+        currentValue: '0',
+      }
+
     case 'CALCULATE':
       // If there is no operation or previous value, return the state as is
       if (!state.operation || state.previousValue === null) return state
@@ -61,13 +72,37 @@ export const Calculator = () => {
 
   // Function to handle the actions dispatched by the buttons
   // This function will be passed to the buttons as a prop
-  // For example: <button onClick={() => handleAction('ADD_DIGIT', 1)}>1</button>
+  // For example: <button onClick={() => handleAction('ADD_DIGIT', '1')}>1</button>
   const handleAction = (type, payload) => dispatch({ type, payload })
+
+  const buttons = [
+    { label: 'C', type: 'CLEAR' },
+    { label: '÷', type: 'CHOOSE_OPERATION', payload: '/' },
+    { label: '×', type: 'CHOOSE_OPERATION', payload: '*' },
+    { label: '−', type: 'CHOOSE_OPERATION', payload: '-' },
+
+    { label: '7', type: 'ADD_DIGIT', payload: '7' },
+    { label: '8', type: 'ADD_DIGIT', payload: '8' },
+    { label: '9', type: 'ADD_DIGIT', payload: '9' },
+    { label: '+', type: 'CHOOSE_OPERATION', payload: '+' },
+
+    { label: '4', type: 'ADD_DIGIT', payload: '4' },
+    { label: '5', type: 'ADD_DIGIT', payload: '5' },
+    { label: '6', type: 'ADD_DIGIT', payload: '6' },
+    { label: '=', type: 'CALCULATE' },
+
+    { label: '1', type: 'ADD_DIGIT', payload: '1' },
+    { label: '2', type: 'ADD_DIGIT', payload: '2' },
+    { label: '3', type: 'ADD_DIGIT', payload: '3' },
+
+    { label: '.', type: 'ADD_DIGIT', payload: '.' },
+    { label: '0', type: 'ADD_DIGIT', payload: '0', span: 2 },
+  ]
 
   return (
     <div className="calculator">
       <div className="display">{state.currentValue}</div>
-      <div className="buttons">{/* map buttons */}</div>
+      <div className="buttons">{}</div>
     </div>
   )
 }
