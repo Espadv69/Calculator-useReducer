@@ -59,6 +59,11 @@ export const Calculator = () => {
   // Use the reducer hook to manage the state of the calculator
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  // Function to handle the actions dispatched by the buttons
+  // This function will be passed to the buttons as a prop
+  // For example: <button onClick={() => handleAction('ADD_DIGIT', 1)}>1</button>
+  const handleAction = (type, payload) => dispatch({ type, payload })
+
   return (
     <div className="calculator">
       <div className="display">{state.currentValue}</div>
