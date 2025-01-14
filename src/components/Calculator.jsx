@@ -1,3 +1,7 @@
 import { useReducer } from 'react'
 
-export const Calculator = () => {}
+const initialState = {
+  currentValue: '0',
+  previousValue: null,
+  operation: null,
+}
