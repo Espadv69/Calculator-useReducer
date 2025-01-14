@@ -5,3 +5,7 @@ const initialState = {
   previousValue: null,
   operation: null,
 }
+
+const reducer = (state, action) => {
+  const { type, payload } = action
+}
