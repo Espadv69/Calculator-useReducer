@@ -23,11 +23,14 @@ const reducer = (state, action) => {
       return { ...state, currentValue: state.currentValue + payload }
 
     case 'CALCULATE':
+      // If there is no operation or previous value, return the state as is
       if (!state.operation || state.previousValue === null) return state
 
+      // Convert the previous and the current value to numbers
       const prev = parseFloat(state.previousValue)
       const current = parseFloat(state.currentValue)
 
+      // Perform the operation based on the operation type
       const operations = {
         '+': prev + current,
         '-': prev - current,
@@ -35,6 +38,7 @@ const reducer = (state, action) => {
         '/': prev / current,
       }
 
+      // Return the new state with the result of the operation as the current value
       return {
         currentValue: operations[state.operation]?.toString() || '0',
         previousValue: null,
@@ -42,14 +46,17 @@ const reducer = (state, action) => {
       }
 
     case 'CLEAR':
+      // Return the initial state
       return initialState
 
     default:
+      // If the action type is not recognized, return the state as is
       return state
   }
 }
 
 export const Calculator = () => {
+  // Use the reducer hook to manage the state of the calculator
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
