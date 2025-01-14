@@ -8,4 +8,14 @@ const initialState = {
 
 const reducer = (state, action) => {
   const { type, payload } = action
+
+  switch (type) {
+    case 'ADD_DIGIT':
+      if (state.currentValue === '0' && payload === 0) return state
+      if (state.currentValue === '0' && payload !== '.') {
+        return { ...state, currentValue: payload }
+      }
+
+      return { ...state, currentValue: state.currentValue + payload }
+  }
 }
