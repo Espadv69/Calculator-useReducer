@@ -21,6 +21,12 @@ const reducer = (state, action) => {
 
       // If the current value already has a dot and the payload is a dot, return the state as is
       return { ...state, currentValue: state.currentValue + payload }
+
+    case 'CLEAR':
+      return initialState
+
+    default:
+      return state
   }
 }
 
@@ -30,9 +36,7 @@ export const Calculator = () => {
   return (
     <div className="calculator">
       <div className="display">{state.currentValue}</div>
-      <div className="buttons">
-      { /* map buttons */}
-      </div>
+      <div className="buttons">{/* map buttons */}</div>
     </div>
   )
 }
